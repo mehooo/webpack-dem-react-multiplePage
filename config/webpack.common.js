@@ -36,6 +36,13 @@ module.exports = {
         filename: process.env.NODE_ENV ? 'js/[name].[chunkhash].js' : 'js/[name].js', //根据入口文件分为不同出口文件
         // chunkFilename : process.env.NODE_ENV ? 'js/[id].[chunkhash].js' : 'js/[id].js', //根据入口文件分为不同出口文件
     },
+    resolve:{
+        modules:[path.resolve('node_modules')],  // 数组   可以配置多个  强制指定寻找第三方模块的目录 使得查找更快
+        alias:{  //别名配置  import xxx from 'src/xxx' ---> import xxx from '@/xxx'
+            '@':path.resolve(__dirname,'./src')
+        },
+        extensions:['.css','.js','.json','.jsx'] // 自动添加后缀   加载模块时候依次添加后缀 直到找到为止
+    },
     module: {
         rules: [ //公共配置加载器
             {
